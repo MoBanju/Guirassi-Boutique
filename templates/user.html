@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="user">
+        <div id="user">
+            <h1>Profile</h1> <br />
+            <div class="cart-element framed">
+                <div> 
+                    User name: {{ user.username }} {# Username#}
+                    <br />
+                    User ID: {{ user.userid }} {#User ID#}
+                </div>
+            </div>
+
+
+            <h1>Cart</h1>
+            <div class="cart-element framed">
+                <div> 
+                    <!-- A div to add padding around the table and change background color. -->
+                    <table class="cart-table">
+                        {# For the admin #}
+                        {% if role == "admin" %}
+                            <thead>
+                                <th>Order ID</th>
+                                <th>By</th>
+                                <th>Product</th>
+                                <th>Size</th>
+                                <th>Count</th>
+                                <th>Item price</th>
+                                <th>Price</th>
+                                <th>Bought</th>
+                            </thead>
+                            <tbody>
+                                {% for purchase in purchases %}
+                                    <tr>
+                                        <td> {{ purchase.order_id }} </td>
+                                        <td> {{ purchase.username }} </td>
+                                        <td> {{ purchase.name }} </td>
+                                        <td> {{ purchase.size }} </td>
+                                        <td> {{ purchase.quantity }} </td>
+                                        <td> {{ purchase.price }} </td>
+                                        <td> {{ purchase.total }} </td>
+                                        {% if purchase.purchased == True %}
+                                            <td> {{ "Yes" }} </td>
+                                        {% else %}
+                                            <td> {{ "No" }} </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        {# For the users #}
+                        {% elif role == "user" %}
+                            <thead>
+                                <th>Product ID</th>
+                                <th>Product</th>
+                                <th>Size</th>
+                                <th>Count</th>
+                                <th>Item price</th>
+                                <th>Price</th>
+                            </thead>
+                            <tbody>
+                                {% for purchase in purchases %}
+                                    <tr>
+                                        <td> {{ purchase.prod_id }} </td>
+                                        <td> {{ purchase.name }} </td>
+                                        <td> {{ purchase.size }} </td>
+                                        <td> {{ purchase.quantity }} </td>
+                                        <td> {{ purchase.price }} </td>
+                                        <td> {{ purchase.total }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="register">
+        <div>
+            <h1 id="register">Registration form</h1>
+            <img src="static/images/egg_registration.png" alt="" width="280px" id="egg"> <br /><br /><br />
+            <form action="/register" method="POST" id="registerform">
+                <label>Username: <input type="text" name="newusername"/></label> <br />
+                <label>Password: <input type="password" name="newpassword"></label><br />
+                <input type="submit" id="register" value="Register">
+            </form>
+            <h6> Already have an account? <a href="/login">Click here</a></h6>
+        </div>
+    </main>
+{% endblock content %}

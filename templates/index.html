@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="home">
+        <div>
+            <div class="banner">
+                <img src="static/images/banner.png" alt="Website logo">
+            </div>
+            
+            <div class="article-box">
+                {% for product in products %}
+                    <article >
+                        {# {{url_for('product', prod_id = product.prod_id)}} #}
+                        <a href="{{url_for('product', prod_id = product.prod_id)}}">
+                            {# "static/images/{{ 'product.file_name' }}" #}
+                            <img src="{{ url_for('static', filename='images/products/') + product.file_name}}"  />
+                            <h3><div class="price">{{ product.price }},-</div>{{ product.name }}</h3>
+                            <p>{{product.description}}.</p>
+                        </a>                
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock content %}

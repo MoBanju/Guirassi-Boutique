@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="cart">
+        <div>
+            <h1>Cart</h1>
+            <div class="cart-element framed">
+                <div> 
+                    <!-- A div to add padding around the table and change background color. -->
+                    <table class="cart-table">
+                        <thead>
+                            <th>Product ID</th>
+                            <th>Product</th>
+                            <th>Size</th>
+                            <th>Count</th>
+                            <th>Item price</th>
+                            <th>Price</th>
+                            <th class="table-end">Cancel</th>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td> {{ product.prod_id }} </td>
+                                    <td> {{ product.name }} </td>
+                                    <td> {{ product.size }} </td>
+                                    <td> {{ product.quantity }} </td>
+                                    <td> {{ product.price }} </td>
+                                    <td> {{ product.total }} </td>
+                                    <td class="table-end">
+                                        <form action="{{url_for('remove', order_id = product.order_id)}}" method="POST">
+                                            <button name="remove" type="submit">X</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5">Totals</td>
+                                <td>{{ total }}</td>
+                                <td class="table-end">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h1>Checkout</h1>
+            <div class="cart-element framed">
+                <div>
+                    <form method="POST" action="/cart">
+                        <fieldset class="framed flexbox space_between">
+                                <legend>Submit order</legend>
+                                
+                                {#<label for="AGB" class="checkboxlabel"><input type="checkbox" name="AGB" id="AGB">I agree to the general terms of service.</label>#}
+                                <input type="submit" value="Add to Cart">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

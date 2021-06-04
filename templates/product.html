@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="content main">
+        <div>
+            <div class="framed flexbox">
+                <div class="img-box">
+                    {# {{ url_for('static', filename='static/images/products/{{ product.file_name}}' ) }} #}
+                    <img src="{{ url_for('static', filename='images/products/') + product.file_name}}"  />
+                </div>
+                <div class="product_right">
+                    <div class="product_info">
+                        <h3><div class="price">{{ product.price }},-</div> {{ product.name }} </h3>
+        
+                        <p>{{ product.description }}.</p>
+                    </div>
+                    {% if LoggedIn == True %}    
+                        <div class="product_form">
+                            <form action="" method="POST">
+                                
+                                <label for="count">Count: 
+                                <input type="number" min="1" name="count" size="3" width="3" class="small64"></label>
+                                <br>
+                                <label for="size">Size: 
+                                <select name="size">
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">L</option>
+                                </select></label>
+                                <br>
+                                <div>
+                                    <input type="submit" value="Add to Cart">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="product_submit">
+                            <button type="button">Add to Cart</button>
+                        </div>
+                    {# else #}
+                    {% endif %}
+                </div>
+            </div>
+        
+            <h1>Details</h1>
+        
+            <div class="framed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales neque quis nisi facilisis lobortis. Nam
+                efficitur eget nisi sit amet bibendum. Vestibulum elementum faucibus quam ut posuere. Vivamus pellentesque
+                luctus nunc at bibendum. Mauris viverra ultrices nisi, sit amet imperdiet lectus accumsan eu. Morbi ornare diam
+                nulla, nec aliquet nisl accumsan dictum. Mauris sit amet tellus in ipsum commodo hendrerit. Nunc at mollis
+                magna. Proin felis nibh, venenatis non lobortis quis, ullamcorper nec dolor. Vivamus tempus volutpat fringilla.
+                Praesent volutpat sit amet massa nec ultricies. Curabitur sollicitudin pharetra tortor in dictum. In mattis orci
+                vel augue vehicula rutrum. Nullam vitae sollicitudin orci.
+            </div>
+        </div>
+    </main> 
+{% endblock content %}

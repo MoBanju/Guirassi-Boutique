@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Guirassi Boutique | Home </title>
+    {% endif %}
+
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="content">
+                <div id="logo">
+                    <h1>     G&B     </h1>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        {% if LoggedIn == True %}
+                            <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        {% endif %}
+                        <li>
+                            <div class="dropdown">
+                                <a class="dropbtn"><i class="fa fa-user"></i></a>
+                                <div class="dropdown-content">
+                                    {% if LoggedIn == True %}
+                                        <a href="/user">Profile</a>
+                                        {% if role == "admin" %}
+                                            <a href="/add">Add</a>
+                                        {% endif %}
+                                        <a href="/logout">Logout</a>
+                                    {% else %}
+                                        <a href="/login">Login</a>
+                                        <a href="/register">Register</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+        
+        <footer class="flexbox">
+            <div class="contact">
+                <span class="strong">Customer service:</span> | +245 96969 55 6468 |
+                <a href="#">leboss@guirassiboutique.com</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
